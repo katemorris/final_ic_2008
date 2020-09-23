@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/ingredient'
 require './lib/recipe'
 require './lib/cook_book'
+require 'mocha/minitest'
 
 class CookbookTest < Minitest::Test
   def setup
@@ -11,7 +12,7 @@ class CookbookTest < Minitest::Test
     Date.stubs(:today).returns(Date.new(2020,4,22))
     @cookbook = CookBook.new
   end
-  
+
   def test_it_has_attributes
     assert_equal [], @cookbook.recipes
     assert_equal '04-22-2020', @cookbook.date
@@ -63,7 +64,7 @@ class CookbookTest < Minitest::Test
     assert_equal @recipe2, @cookbook.highest_calorie_meal
   end
 
-  def method_name
+  def test_it_can_return_a_summary
 
   end
 end
