@@ -6,13 +6,18 @@ class Pantry
   end
 
   def stock_check(ingredient)
-    found_item = @stock.find do |item|
+    found_item = @stock.select do |item|
       item == ingredient
     end
-    if found_item.nil?
+    if found_item.empty?
       0
     else
-      found_item.to_a.last
+      found_item[ingredient]
     end
+  end
+
+  def restock(item, amount)
+    @stock[item] ||= 0
+    @stock[item] += amount
   end
 end
