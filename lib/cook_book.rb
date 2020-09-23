@@ -21,4 +21,14 @@ class CookBook
       recipe.total_calories
     end
   end
+
+  def summary
+    @recipes.each_with_object([]) do |recipe, array|
+      recipe.each_with_object({}) do |recipe, hash|
+        hash[:name] = recipe.name
+        hash[:details] = recipe.ingredients_required
+        hash[:total_calories] = recipe.total_calories
+      end
+    end
+  end
 end
