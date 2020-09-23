@@ -8,10 +8,13 @@ class CookbookTest < Minitest::Test
   def setup
     @recipe1 = Recipe.new("Mac and Cheese")
     @recipe2 = Recipe.new("Cheese Burger")
+    Date.stubs(:today).returns(Date.new(2020,4,22))
     @cookbook = CookBook.new
   end
+  
   def test_it_has_attributes
     assert_equal [], @cookbook.recipes
+    assert_equal '04-22-2020', @cookbook.date
   end
 
   def test_it_can_add_recipes
@@ -58,5 +61,9 @@ class CookbookTest < Minitest::Test
     @recipe2.add_ingredient(ingredient4, 1)
 
     assert_equal @recipe2, @cookbook.highest_calorie_meal
+  end
+
+  def method_name
+
   end
 end
